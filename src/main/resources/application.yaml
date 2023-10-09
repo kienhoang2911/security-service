@@ -1,0 +1,6 @@
+server:
+    port : 8086
+x-secret-key: HzAdgXCQ3dm3kEadtwcX4ifSj77QqdNo
+jwt.secret: unikom123456
+
+
