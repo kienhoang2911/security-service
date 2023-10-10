@@ -1,5 +1,6 @@
 package com.example.securityservice.login.controller;
 
+import com.example.securityservice.login.domain.dto.ResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -12,15 +13,15 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/test")
 
 public class TestApiController {
-//    @PostMapping(value = "/test1")
-//    public ResponseEntity<ResponseDto> login() {
-//        try {
-//            String test = "Call test thành công";
-//            return ResponseEntity.ok(ResponseDto.success("SUCCESS", test));
-//        } catch (Exception e) {
-//            return ResponseEntity.ok(ResponseDto.error("500", e.getMessage()));
-//        }
-//    }
+    @PostMapping(value = "/test1")
+    public ResponseEntity<ResponseDto> login() {
+        try {
+            String test = "Call test thành công";
+            return ResponseEntity.ok(ResponseDto.success("SUCCESS", test));
+        } catch (Exception e) {
+            return ResponseEntity.ok(ResponseDto.error("500", e.getMessage()));
+        }
+    }
 //
 //    @PostMapping(value = "/admin")
 //    public ResponseEntity<ResponseDto> testAdmin() {

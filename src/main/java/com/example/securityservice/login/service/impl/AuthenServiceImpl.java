@@ -69,14 +69,16 @@ public class AuthenServiceImpl implements AuthenService {
         //Check username
         Claims claims = jwtTokenUtil.getAllClaimsFromToken(payload.getRefreshToken());
         String username = claims.getSubject();
-        var existUser = "";
-        if (ObjectUtils.isEmpty(existUser)){
+        BasicLogin basicLogin = new BasicLogin();
+        basicLogin.setId("1");
+        basicLogin.setUsername("kien");
+        if (ObjectUtils.isEmpty(basicLogin)){
             throw new SecurityException("USER_NOT_FOUND");
         }
         if (!"refreshToken".equals(claims.getAudience())) {
             throw new SecurityException("REFRESH_TOKEN_INVALID");
         }
-        JwtResponse jwtResponse = jwtTokenUtil.generateToken("",username);
+        JwtResponse jwtResponse = jwtTokenUtil.generateToken(basicLogin.getId(),username);
         return jwtResponse;
     }
 }

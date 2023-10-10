@@ -21,6 +21,10 @@ public class JwtUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         BasicLogin basicLogin = new BasicLogin();
+        basicLogin.setId("1");
+        basicLogin.setUsername("kien");
+        basicLogin.setAuthorities("L");
+        basicLogin.setPassword("123456a@");
         if (basicLogin != null) {
             String authorities = basicLogin.getAuthorities();
             List<SimpleGrantedAuthority> grantedAuthorities = new ArrayList<>();
