@@ -5,11 +5,15 @@ import com.example.securityservice.config.JwtTokenUtil;
 import com.example.securityservice.login.domain.dto.*;
 import com.example.securityservice.login.service.AuthenService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.core.ResolvableType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.security.oauth2.client.registration.ClientRegistration;
+import org.springframework.security.oauth2.client.registration.ClientRegistrationRepository;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -19,6 +23,13 @@ public class AuthenController {
     private final AuthenService authenService;
 
     private final JwtTokenUtil jwtTokenUtil;
+
+    private static final String authorizationRequestBaseUri = "oauth2/authorize-client";
+    Map<String, String> oauth2AuthenticationUrls = new HashMap<>();
+
+
+    private final ClientRegistrationRepository clientRegistrationRepository;
+
 
     @PostMapping(value = "/login")
     public ResponseEntity<ResponseDto> login(@RequestBody JwtRequest request) {
@@ -48,5 +59,24 @@ public class AuthenController {
         } catch (Exception e) {
             return ResponseEntity.ok(ResponseDto.error("500", e.getMessage()));
         }
+    }
+
+    @GetMapping("/oauth_login")
+    public String getLoginPage(Model model) {
+        Iterable<ClientRegistration> clientRegistrations = null;
+        ResolvableType type = ResolvableType.forInstance(clientRegistrationRepository)
+                .as(Iterable.class);
+        if (type != ResolvableType.NONE && ClientRegistration.class.isAssignableFrom(type.resolveGenerics()[0])) {
+            clientRegistrations = (Iterable<ClientRegistration>) clientRegistrationRepository;
+        }
+
+
+
+        clientRegistrations.forEach(registration -> oauth2AuthenticationUrls.put(registration.getClientName(), authorizationRequestBaseUri + "/" + registration.getRegistrationId()));
+        model.addAttribute("urls", oauth2AuthenticationUrls);
+
+
+
+        return "templates/oauth_login.html";
     }
 }

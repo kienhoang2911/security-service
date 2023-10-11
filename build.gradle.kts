@@ -28,6 +28,14 @@ dependencies {
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
 	runtimeOnly("io.jsonwebtoken:jjwt-jackson:0.11.5")
 	compileOnly("org.projectlombok:lombok:1.18.20")
+	implementation("org.springframework.boot:spring-boot-starter-oauth2-client:3.1.4")
+	implementation("org.springframework.boot:spring-boot-starter-thymeleaf:3.1.4")
+	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.1.2.RELEASE")
+	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-jose
+	implementation("org.springframework.security:spring-security-oauth2-jose:6.1.4")
+
+
+
 
 }
 
