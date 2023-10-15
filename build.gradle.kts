@@ -33,6 +33,8 @@ dependencies {
 	implementation("org.thymeleaf.extras:thymeleaf-extras-springsecurity5:3.1.2.RELEASE")
 	// https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-jose
 	implementation("org.springframework.security:spring-security-oauth2-jose:6.1.4")
+// https://mvnrepository.com/artifact/org.springframework.security/spring-security-oauth2-authorization-server
+	implementation("org.springframework.security:spring-security-oauth2-authorization-server:1.1.2")
 
 
 
