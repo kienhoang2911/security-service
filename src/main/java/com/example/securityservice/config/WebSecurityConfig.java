@@ -59,6 +59,11 @@ public class WebSecurityConfig  {
                         .requestMatchers("/auth/**").permitAll()
                 )
                 .authorizeHttpRequests(a -> a.anyRequest().authenticated())
+                .exceptionHandling(e -> e
+                        .authenticationEntryPoint(new JwtAuthenticationEntryPoint())
+                ).sessionManagement(s -> s
+                        .sessionCreationPolicy(SessionCreationPolicy.STATELESS)
+                )
                 .sessionManagement(sess -> sess.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class)
                 .build();

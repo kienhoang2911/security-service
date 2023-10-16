@@ -22,7 +22,7 @@ dependencies {
 	testImplementation("org.springframework.boot:spring-boot-starter-test")
 	implementation("org.springframework.boot:spring-boot-starter-security:3.1.4")
 	implementation("org.springframework.boot:spring-boot-starter-web:3.1.4")
-	implementation("org.springframework.security:spring-security-oauth2-resource-server:5.5.0")
+//	implementation("org.springframework.security:spring-security-oauth2-resource-server:5.5.0")
 	testImplementation("org.springframework.security:spring-security-test:6.1.4")
 	runtimeOnly("io.jsonwebtoken:jjwt-impl:0.11.5")
 	implementation("io.jsonwebtoken:jjwt-api:0.11.5")
